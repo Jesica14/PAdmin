@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Simulador de examen Salesforce Certified Platform Administrator basado en un banco de 158 preguntas." />
+  <title>Salesforce Platform Administrator — Simulador</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Salesforce Certified Platform Administrator</p>
+        <h1>Simulador de examen</h1>
+      </div>
+      <button id="themeBtn" class="icon-btn" type="button" aria-label="Cambiar tema">◐</button>
+    </header>
+
+    <section id="setupView" class="panel setup-panel">
+      <div class="hero-copy">
+        <span class="pill">158 preguntas disponibles</span>
+        <h2>Configura tu práctica</h2>
+        <p>Elige cuántas preguntas quieres responder. El simulador admite preguntas de una o varias respuestas y puede mostrar retroalimentación inmediata.</p>
+      </div>
+
+      <div class="settings-grid">
+        <label class="field">
+          <span>Número de preguntas</span>
+          <select id="questionCount">
+            <option value="10">10 preguntas</option>
+            <option value="25">25 preguntas</option>
+            <option value="50">50 preguntas</option>
+            <option value="75">75 preguntas</option>
+            <option value="100">100 preguntas</option>
+            <option value="158">Examen completo (158)</option>
+          </select>
+        </label>
+
+        <label class="toggle-row">
+          <input id="shuffleQuestions" type="checkbox" checked />
+          <span>
+            <strong>Mezclar preguntas</strong>
+            <small>Presenta el banco en orden aleatorio.</small>
+          </span>
+        </label>
+
+        <label class="toggle-row">
+          <input id="shuffleOptions" type="checkbox" checked />
+          <span>
+            <strong>Mezclar opciones</strong>
+            <small>Cambia el orden visual de las respuestas sin alterar la clave.</small>
+          </span>
+        </label>
+
+        <label class="toggle-row">
+          <input id="instantFeedback" type="checkbox" checked />
+          <span>
+            <strong>Retroalimentación inmediata</strong>
+            <small>Muestra si acertaste y la explicación después de responder.</small>
+          </span>
+        </label>
+      </div>
+
+      <button id="startBtn" class="primary-btn" type="button">Comenzar simulador</button>
+    </section>
+
+    <section id="examView" class="hidden">
+      <div class="exam-toolbar panel">
+        <div class="progress-copy">
+          <span id="progressText">Pregunta 1 de 10</span>
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        </div>
+        <div class="score-mini">
+          <span>Aciertos</span>
+          <strong id="liveScore">0</strong>
+        </div>
+        <button id="quitBtn" class="ghost-btn" type="button">Finalizar</button>
+      </div>
+
+      <article class="panel question-card">
+        <div class="question-meta">
+          <span id="sourceQuestion" class="pill neutral">Pregunta #1</span>
+          <span id="selectionRule" class="pill">Selecciona 1 opción</span>
+        </div>
+        <h2 id="questionText"></h2>
+
+        <div id="optionsList" class="options-list"></div>
+
+        <div id="feedback" class="feedback hidden" role="status"></div>
+        <div id="explanation" class="explanation hidden"></div>
+
+        <div class="actions">
+          <button id="checkBtn" class="primary-btn" type="button" disabled>Comprobar respuesta</button>
+          <button id="nextBtn" class="primary-btn hidden" type="button">Siguiente</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="resultsView" class="panel hidden results-panel">
+      <span class="pill">Resultado</span>
+      <h2>Simulador finalizado</h2>
+      <div class="score-circle"><span id="finalPercent">0%</span></div>
+      <div class="results-grid">
+        <div><strong id="correctCount">0</strong><span>Correctas</span></div>
+        <div><strong id="wrongCount">0</strong><span>Incorrectas</span></div>
+        <div><strong id="answeredCount">0</strong><span>Respondidas</span></div>
+      </div>
+      <div class="result-actions">
+        <button id="reviewBtn" class="primary-btn" type="button">Repasar incorrectas</button>
+        <button id="restartBtn" class="ghost-btn" type="button">Nuevo simulador</button>
+      </div>
+    </section>
+
+    <footer>
+      Banco cargado desde el documento proporcionado. Las respuestas se califican según la clave incluida en ese archivo.
+    </footer>
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
